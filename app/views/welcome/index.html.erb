@@ -4,12 +4,16 @@
     <h2>Bem-vindo ao TodoApp</h2>
     <p>Crie suas listas de tarefas e tente cumpri-las!</p>
   </div>
-  <div class="card bg-light">
-    <div class="card-body"><h3><%= link_to "Minha Lista", lists_path %></h3></div>
+
+  <div class="card-columns">
+     <div class="card bg-light">
+      <div class="card-body"><h3><%= link_to "Minha Lista", lists_path %></h3></div>
+    </div>
+    <br>
+    <div class="card bg-light">
+      <div class="card-body"><h3><%= link_to "Meus Favoritos", favorites_path %></h3></div>
+    </div>
   </div>
-  <br>
-  <div class="card bg-light">
-    <div class="card-body"><h3><%= link_to "Meus Favoritos", favorites_path %></h3></div>
-  </div>
+ 
 </div>
 
