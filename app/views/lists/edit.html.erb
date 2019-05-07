@@ -1,6 +1,11 @@
 <h1>Edit List</h1>
 
-<%= render 'form', list: @list %>
+<!-- somente o dono da lista pode editá-lo -->
+<% if current_user == @list.user %>
+  <%= render 'form', list: @list %>
+<% else %>
+  <h2>Você não tem permissão de editar esta lista!</h2>
+<% end %>
 
 <br>
 

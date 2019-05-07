@@ -10,14 +10,23 @@
   </thead>
   <tbody>
     <% @lists.each do |list| %>
-      <tr>
-        <td><%= list.list_title %></td>
-        <td><%= public_private(list.is_private) %></td>
-        <td>###</td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Delete', list, method: :delete, data: {confirm: "Are you sure?"}%></td>
+      <!--só é possível ver listas públicas de outros usuários; se for do atual usuário vê tudo-->
+      <% if (list.is_private == false and list.user != current_user) or (list.user == current_user) %>
+        <tr>
+          <td><%= list.list_title %></td>
+          <td><%= public_private(list.is_private) %></td>
+          <td><%= list.user ? list.user.email : "-----" %></td> <!--se user existir (o dono da lista), mostrar seu email senão mostra '----' -->
+          <td><%= link_to 'Show', list %></td>
+          
+          <!-- só pode editar e deletar uma lista se for o dono da lista-->
+          <% if list.user == current_user %>
+            <td><%= link_to 'Edit', edit_list_path(list) %></td>
+            <td><%= link_to 'Delete', list, method: :delete, data: {confirm: "Are you sure?"}%></td>
+          <% end %>   
+           
       </tr>
+      <% end %>
+      
     <% end %>
   </tbody>
 </table>

@@ -10,4 +10,9 @@
   <%= public_private(@list.is_private) %>
 </p>
 
+<p>
+  <strong>Criador: </strong>
+  <%= @list.user.email %>
+</p>
+
 <%= link_to 'Back', lists_path %>

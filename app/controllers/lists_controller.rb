@@ -18,6 +18,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.user = current_user
     if @list.save
       flash[:success] = "Lista criada com sucesso."
       redirect_to @list 
