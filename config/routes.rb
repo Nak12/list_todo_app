@@ -5,5 +5,8 @@ Rails.application.routes.draw do
 
   root "welcome#index"
 
-  resources :lists
+  resources :lists do
+    resources :tasks
+  end 
+  
 end

@@ -15,4 +15,26 @@
   <%= @list.user.email %>
 </p>
 
+<hr>
+
+<!--Listando tarefas-->
+<h3>Tarefas</h3>
+<% @list.tasks.each do |task| %>
+  <p>
+    <%= task.task_title %>
+  </p>
+  <!-- somente o autor pode concluir uma tarefa -->
+  <% if current_user == @list.user %>
+    <p>
+      <%= link_to 'Feito', list_task_path(@list, task), method: :delete %>
+    </p>
+  <% end %>
+<% end %>
+
+<!--Adicionado tarefas-->
+<% if current_user == @list.user %>
+  <h3>Adicionar Tarefa:</h3>
+  <%= render 'tasks/form'%>
+<% end %> 
+
 <%= link_to 'Back', lists_path %>
