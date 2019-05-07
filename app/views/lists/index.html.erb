@@ -15,7 +15,7 @@
         <tr>
           <td><%= list.list_title %></td>
           <td><%= public_private(list.is_private) %></td>
-          <td><%= list.user ? list.user.email : "-----" %></td> <!--se user existir (o dono da lista), mostrar seu email senão mostra '----' -->
+          <td><%= list.user.email %></td> <!--se user existir (o dono da lista), mostrar seu email senão mostra '----' -->
           <td><%= link_to 'Show', list %></td>
           
           <!-- só pode editar e deletar uma lista se for o dono da lista-->
@@ -33,4 +33,4 @@
 
 <br>
 
-<%= link_to 'Home', root_path  %>  | <%= link_to 'New List', new_list_path %>
+<%= link_to 'Home', root_path  %>  | <%= link_to 'New List', new_list_path %> | <%= link_to 'My Favorites', favorites_path %>

@@ -1,5 +1,13 @@
 <h1>Show List</h1>
 
+<!-- usuário só pode favoritar as listas públicas de outros usuários -->
+<% if (@list.user != current_user) and (@list.is_private == false) %>
+  <!--verifica se já não está na lista de favoritos-->
+  <% if @get_favorite.empty? %>
+    <%= link_to 'Adicionar aos meus favoritos', favorites_path(user: current_user, list: @list.id), method: :post %>
+  <% end %>
+<% end %>
+
 <p>
   <strong>Lista: </strong>
   <%= @list.list_title %>
@@ -11,8 +19,8 @@
 </p>
 
 <p>
-  <strong>Criador: </strong>
-  <%= @list.user.email %>
+  <strong>Autor: </strong>
+  <%= @list.user.email%>
 </p>
 
 <hr>

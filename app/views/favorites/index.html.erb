@@ -1,0 +1,25 @@
+<h1>Minhas listas favoritas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lista</th>
+      <th>Autor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <!--mostra somente os favoritos do usuário atual (que está logado)-->
+      <% if favorite.user == current_user %>
+        <tr>
+          <td><%= link_to favorite.list.list_title, list_path(favorite.list_id) %></td>
+          <td><%= favorite.user.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', lists_path %> 

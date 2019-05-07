@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   resources :lists do
     resources :tasks
   end 
+
+  resources :favorites, except: [:edit, :update, :destroy, :show]
   
 end

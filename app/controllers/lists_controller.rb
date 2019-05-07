@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :get_user_favorite, only: [:show]
 
   def index
     @lists = List.all
@@ -50,4 +51,8 @@ class ListsController < ApplicationController
     def list_params 
       params.require(:list).permit(:list_title, :is_private)
     end 
+
+    def get_user_favorite
+      @get_favorite = Favorite.where({user_id: current_user, list_id: @list.id})
+    end
 end
