@@ -12,4 +12,23 @@
  *
  */
 
- @import "bootstrap";
+@import "bootstrap";
+
+h3{
+  
+  text-align: center;
+}
+
+a{
+  color: #303030;
+}
+a:hover{
+  text-decoration: none;
+}
+
+.jumbotron{
+  margin-top: 15px;
+  text-align: center;
+  letter-spacing: 3px;
+  height: 200px;
+}

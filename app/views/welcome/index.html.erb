@@ -1,12 +1,15 @@
-<h1>Welcome#index</h1>
 
-<%= link_to 'List', lists_path %><br/>
-<hr/>
-<% if user_signed_in? %>
-  <p>Usuário <strong><%= current_user.email %></strong> logado!</p>
-  <%= link_to 'Fazer logoff', destroy_user_session_path, method: :delete %>
-  <hr/>
-<% else %>
-  <%= link_to 'Cadastrar novo usuário', new_user_registration_path %> | <%= link_to 'Fazer login', new_user_session_path %>
-<% end %>
+<div class="container">
+  <div class="jumbotron">
+    <h2>Bem-vindo ao TodoApp</h2>
+    <p>Crie suas listas de tarefas e tente cumpri-las!</p>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body"><h3><%= link_to "Minha Lista", lists_path %></h3></div>
+  </div>
+  <br>
+  <div class="card bg-light">
+    <div class="card-body"><h3><%= link_to "Meus Favoritos", favorites_path %></h3></div>
+  </div>
+</div>
 
