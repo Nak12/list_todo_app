@@ -1,7 +1,13 @@
 <h1>Show List</h1>
 
 <p>
-  <strong><%= @list.list_title %></strong>
+  <strong>Lista: </strong>
+  <%= @list.list_title %>
+</p>
+
+<p>
+  <strong>Acesso: </strong>
+  <%= public_private(@list.is_private) %>
 </p>
 
 <%= link_to 'Back', lists_path %>
