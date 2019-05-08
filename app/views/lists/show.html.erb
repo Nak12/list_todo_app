@@ -21,7 +21,7 @@
 
       <!-- só pode editar e deletar uma lista se for o dono da lista-->
         <% if @list.user == current_user %>
-          | <%= link_to 'Editar', edit_list_path(@list), class: "btn btn-warning btn-sm" %>
+          | <%= link_to 'Editar Lista', edit_list_path(@list), class: "btn btn-warning btn-sm" %>
           | <%= link_to 'Feito!', list_path(@list), method: :delete, data: {confirm: "Você fez mesmo todas as tarefas???"}, class: "btn btn-danger btn-sm" %>
         <% end %>
     </p>
@@ -60,10 +60,7 @@
   <% end %> 
 
   <br/>
-  <div class="text-center">
-    <%= link_to 'Home', lists_path, class: "btn btn-outline-dark btn-sm" %> | <%= link_to 'Meus Favoritos', favorites_path, class: "btn btn-outline-info btn-sm" %>
-  </div>
-
+  <%= render 'layouts/bottom' %>
 </div>
 
 

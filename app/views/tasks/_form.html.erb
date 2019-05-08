@@ -1,7 +1,7 @@
 <%= form_with(model: [@list, @list.tasks.build], local: true) do |f| %>
   <p>
     <%= f.label "Adicionar uma tarefa: ", class: "adicionar_tarefa" %><br>
-    <%= f.text_field :task_title %>
+    <%= f.text_field :task_title, required: true %>
   </p>
 
   <p>

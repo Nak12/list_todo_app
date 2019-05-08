@@ -39,7 +39,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy 
-    flash[:dange] = "Lista deletada."
+    flash[:danger] = "Lista deletada."
     redirect_to lists_path
   end
 

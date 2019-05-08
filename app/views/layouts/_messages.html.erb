@@ -1,0 +1,31 @@
+<!--
+<div class="row">
+  <div class="col-sm-12">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, class: "alert alert-#{key} alert-dismissible") do %>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><%= key.capitalize %>!</strong> <%= value %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+-->
+<div class="container">
+  <div class="col-sm-12">
+    <% flash.each do |type, msg| %>
+      <% if type == "notice" %>
+        <div class="alert alert-success">
+      <% elsif type == "alert" %>
+        <div class="alert alert-danger">
+      <% else %>
+        <div class='alert alert-<%= "#{type}" %>'>
+      <% end %>
+      <a href="#" class="close" data-dismiss="alert">&#215;</a>
+      <ul>
+        <li>
+          <%= msg %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>

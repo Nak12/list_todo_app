@@ -1,3 +1,4 @@
+
 <%= form_with(model: list, local: true) do |form| %>
   <% if list.errors.any? %>
     <div>
@@ -10,22 +11,24 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :list_title %><br/>
-    <%= form.text_field :list_title %>
+  <div class="form-group row">
+    <h4 class="col-sm-2">
+      <%= form.label "Título" %>
+    </h4>
+    <div class="col-sm-8">
+      <%= form.text_field :list_title, required: true %>
+    </div>
   </div>
 
-  <br>
 
-  <div class="form-group">
-    <%= form.label "Privado?" %><br/>
-    <%= form.check_box :is_private %>
+  <div class="form-group row">
+    <h4 class="col-sm-2"><%= form.label "Privado?" %></h4>
+    <div class="col-sm-8"><%= form.check_box :is_private %></div> 
   </div>
 
-  <br>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-success"%>
   </div>
   
 <% end %>

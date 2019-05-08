@@ -1,12 +1,16 @@
-<h1>Edit List</h1>
+<div class="container">
+  <h1>Editar Lista</h1>
+  <br/>
+  
+  <!-- somente o dono da lista pode editá-lo -->
+  <% if current_user == @list.user %>
+    <%= render 'form', list: @list %>
+  <% else %>
+    <h2>Você não tem permissão de editar esta lista!</h2>
+  <% end %>
 
-<!-- somente o dono da lista pode editá-lo -->
-<% if current_user == @list.user %>
-  <%= render 'form', list: @list %>
-<% else %>
-  <h2>Você não tem permissão de editar esta lista!</h2>
-<% end %>
+  <br/>
+  <%= render 'layouts/bottom' %>
 
-<br>
+</div>
 
-<%= link_to 'Back', lists_path %>
