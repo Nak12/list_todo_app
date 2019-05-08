@@ -1,25 +1,25 @@
-<h1>Minhas listas favoritas</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Lista</th>
-      <th>Autor</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <h1>Meus Favoritos</h1>
+  <br/>
+  <div class="card-columns">
     <% @favorites.each do |favorite| %>
       <!--mostra somente os favoritos do usuário atual (que está logado)-->
       <% if favorite.user == current_user %>
-        <tr>
-          <td><%= link_to favorite.list.list_title, list_path(favorite.list_id) %></td>
-          <td><%= favorite.user.email %></td>
-        </tr>
+        <div class="card bg-info">
+          <div class="card-body">
+            <h4 class="card-title"><%= link_to favorite.list.list_title, list_path(favorite.list_id), class: "stretched-link" %></h4>
+          </div>
+          <hr/>
+          <p class="card-text"><%= favorite.user.email %> | <%= time_ago_in_words(favorite.list.created_at) %></p>
+        </div>
       <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <br/>
+  <div class="text-center">
+    <%= link_to 'Home', lists_path, class: "btn btn-outline-dark btn-sm" %> | <%= link_to 'Meus Favoritos', favorites_path, class: "btn btn-outline-info btn-sm" %>
+  </div>
+  
+</div>
 
-<%= link_to 'Back', lists_path %> 

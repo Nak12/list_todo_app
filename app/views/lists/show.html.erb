@@ -1,48 +1,75 @@
-<h1>Show List</h1>
+<div class="container">
+  <h1><%= @list.list_title %></h1>
 
-<!-- usuário só pode favoritar as listas públicas de outros usuários -->
-<% if (@list.user != current_user) and (@list.is_private == false) %>
-  <!--verifica se já não está na lista de favoritos-->
-  <% if @get_favorite.empty? %>
-    <%= link_to 'Adicionar aos meus favoritos', favorites_path(user: current_user, list: @list.id), method: :post %>
-  <% end %>
-<% end %>
+  <div>
 
-<p>
-  <strong>Lista: </strong>
-  <%= @list.list_title %>
-</p>
+    <p class="list_info">
+      <%= @list.user.email %> | <%= time_ago_in_words(@list.created_at) %> | 
+      <% if @list.is_private == true %> <!--verifica se é privado-->
+          <small class="btn btn-warning btn-sm" data-toggle="private" title="Não pode ser salvo no seus favoritos.">Privado</small> 
+      <% else %>
+        <small class="btn btn-primary btn-sm" data-toggle="public" title="Você e os outros usuário poderão salvar na lista de favoritos!">Público</small> 
+      <% end %> 
 
-<p>
-  <strong>Acesso: </strong>
-  <%= public_private(@list.is_private) %>
-</p>
+      <!-- usuário só pode favoritar as listas públicas de outros usuários -->
+      <% if (@list.user != current_user) and (@list.is_private == false) %>
+      <!--verifica se já não está na lista de favoritos-->
+        <% if @get_favorite.empty? %>
+          | <%= link_to 'Adicionar aos meus favoritos', favorites_path(user: current_user, list: @list.id), method: :post, class: "btn btn-success btn-sm" %>
+        <% end %>
+      <% end %>
 
-<p>
-  <strong>Autor: </strong>
-  <%= @list.user.email%>
-</p>
-
-<hr>
-
-<!--Listando tarefas-->
-<h3>Tarefas</h3>
-<% @list.tasks.each do |task| %>
-  <p>
-    <%= task.task_title %>
-  </p>
-  <!-- somente o autor pode concluir uma tarefa -->
-  <% if current_user == @list.user %>
-    <p>
-      <%= link_to 'Feito', list_task_path(@list, task), method: :delete %>
+      <!-- só pode editar e deletar uma lista se for o dono da lista-->
+        <% if @list.user == current_user %>
+          | <%= link_to 'Editar', edit_list_path(@list), class: "btn btn-warning btn-sm" %>
+          | <%= link_to 'Feito!', list_path(@list), method: :delete, data: {confirm: "Você fez mesmo todas as tarefas???"}, class: "btn btn-danger btn-sm" %>
+        <% end %>
     </p>
-  <% end %>
-<% end %>
 
-<!--Adicionado tarefas-->
-<% if current_user == @list.user %>
-  <h3>Adicionar Tarefa:</h3>
-  <%= render 'tasks/form'%>
-<% end %> 
+  </div>
+  <hr/>
 
-<%= link_to 'Back', lists_path %>
+  <!--Listando tarefas-->
+  <h3>Tarefas</h3>
+  <div class="table-responsive">
+    <table class="table table-borderless">
+      <tbody>
+        <% if current_user == @list.user %>  <!-- somente o autor pode concluir uma tarefa -->
+          <% @list.tasks.each do |task| %>
+            <tr class= "text-center">
+              <td><%= task.task_title %></td>
+              <td><%= link_to 'Tarefa concluída!', list_task_path(@list, task), method: :delete, class: "btn btn-danger btn-sm" %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <% @list.tasks.each do |task| %>
+            <tr class= "text-center">
+              <td><%= task.task_title %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <hr/>
+
+  <!--Adicionado tarefas-->
+  <% if current_user == @list.user %>
+    <%= render 'tasks/form'%>
+  <% end %> 
+
+  <br/>
+  <div class="text-center">
+    <%= link_to 'Home', lists_path, class: "btn btn-outline-dark btn-sm" %> | <%= link_to 'Meus Favoritos', favorites_path, class: "btn btn-outline-info btn-sm" %>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

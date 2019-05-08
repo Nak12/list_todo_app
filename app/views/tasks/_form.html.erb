@@ -1,10 +1,10 @@
 <%= form_with(model: [@list, @list.tasks.build], local: true) do |f| %>
   <p>
-    <%= f.label "Nome da tarefa: "%><br>
+    <%= f.label "Adicionar uma tarefa: ", class: "adicionar_tarefa" %><br>
     <%= f.text_field :task_title %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success btn-md" %>
   </p>
 <% end %>

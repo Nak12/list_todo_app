@@ -15,8 +15,8 @@
 @import "bootstrap";
 
 
-h1, h2, h3, h4{
-  
+h1, h2, h3{
+  letter-spacing: 3px;
   text-align: center;
 }
 
@@ -42,4 +42,19 @@ a:hover{
 
 .card-text{
   text-align: center;
+}
+
+.card-title{
+  text-align: center;
+}
+
+.list_info{
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.adicionar_tarefa{
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  font-weight: bold;
 }

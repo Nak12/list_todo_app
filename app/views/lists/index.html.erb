@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Lista de Tarefas</h1>
   <br/>
-  <h3><%= link_to "Nova Lista de Tarefas", new_list_path, class: "btn btn-success" %></h3>
+  <h3><%= link_to "Nova Lista de Tarefas", new_list_path, class: "btn btn-success" %> | <%= link_to 'Meus Favoritos', favorites_path, class: "btn btn-info" %></h3>
   <br/>
   <div class="card-columns">
     <% @lists.each do |list| %>
@@ -13,9 +13,9 @@
           <h4 class="card-title">
               <%= link_to list.list_title, list, class: "stretched-link" %>&nbsp;&nbsp;
             <% if list.is_private == true %> <!--verifica se é privado-->
-              <small class="btn btn-warning btn-sm" data-toggle="private" title="Não pode ser salvo no seus favoritos.">privado</small> 
+              <small class="btn btn-warning btn-sm" data-toggle="private" title="Não pode ser salvo no seus favoritos.">Privado</small> 
             <% else %>
-              <small class="btn btn-primary btn-sm" data-toggle="public" title="Pode ser salvo no seus favoritos!">público</small> 
+              <small class="btn btn-primary btn-sm" data-toggle="public" title="Você e outros usuário poderão salvar na lista de favoritos!">Público</small> 
             <% end %>
           </h4>
           <hr/>
@@ -28,43 +28,6 @@
   </div>
   
 </div>
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Lista</th>
-      <th>Acesso</th>
-      <th>Autor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @lists.each do |list| %>
-      <!--só é possível ver listas públicas de outros usuários; se for do atual usuário vê tudo-->
-      <% if (list.is_private == false and list.user != current_user) or (list.user == current_user) %>
-        <tr>
-          <td><%= list.list_title %></td>
-          <td><%= public_private(list.is_private) %></td>
-          <td><%= list.user.email %></td> <!--se user existir (o dono da lista), mostrar seu email senão mostra '----' -->
-          <td><%= link_to 'Show', list %></td>
-          
-          <!-- só pode editar e deletar uma lista se for o dono da lista-->
-          <% if list.user == current_user %>
-            <td><%= link_to 'Edit', edit_list_path(list) %></td>
-            <td><%= link_to 'Delete', list, method: :delete, data: {confirm: "Are you sure?"}%></td>
-          <% end %>   
-
-      </tr>
-      <% end %>
-      
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Home', root_path  %>  | <%= link_to 'New List', new_list_path %> | <%= link_to 'My Favorites', favorites_path %>
 
 <script>
 $(document).ready(function(){
