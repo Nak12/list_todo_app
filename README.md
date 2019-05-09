@@ -1,24 +1,6 @@
-# README
+*App desenvolvido para o processo seletivo da AutoSeg.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*OBS:
+-Apenas nível 1 desenvolvido, não consegui implementar o formulário da subtarefa.
+-Sobre os testes de integração: não consegui implementar o teste para as features 4 e 6.
+-Teste integrado implementado: feature 1 e 2.
