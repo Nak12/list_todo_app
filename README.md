@@ -1,3 +1,5 @@
+# README
+
 *App desenvolvido para o processo seletivo da AutoSeg.
 
 *OBS:
